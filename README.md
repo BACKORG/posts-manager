@@ -31,7 +31,7 @@ Server Configuration Suggestion
 ------------
 
 ### Nginx
-```php
+```shell
 server {
 	listen *:80;
 	#listen [::]:80 ipv6only=on;
