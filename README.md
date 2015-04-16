@@ -87,3 +87,47 @@ return [
 **NOTE:** Yii won't create the database for you, this has to be done manually before you can access it.
 
 Also check and edit the other files in the `config/` directory to customize your application.
+
+```php
+server {
+	listen *:80;
+	#listen [::]:80 ipv6only=on;
+
+	root /var/www/html/posts-manager/web;
+	index index.php;
+
+	# Make site accessible from http://localhost/
+	server_name pm.zhexiao.space;
+
+	access_log /var/log/nginx/pm.access.log;
+      error_log /var/log/nginx/pm.error.log;
+
+	location / {
+		# First attempt to serve request as file, then
+		# as directory, then fall back to displaying a 404.
+		# try_files $uri $uri/ =404;
+		try_files $uri $uri/ /index.php?$args;
+		# Uncomment to enable naxsi on this location
+		# include /etc/nginx/naxsi.rules
+	}	
+
+	error_page 404 /404.html;
+	error_page 500 502 503 504 /50x.html;
+	location = /50x.html {
+		root /var/www/html;
+	}
+
+	location ~ \.php$ {
+		try_files $uri =404;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_index index.php;
+		include fastcgi_params;
+	}
+
+	location ~ /\.(ht|svn|git){
+		deny all;
+	}
+
+}
+```
