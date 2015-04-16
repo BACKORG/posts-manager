@@ -76,7 +76,7 @@ server {
 ```
 
 ### Apache
-```sh
+```bash
 <VirtualHost *:80>
     DocumentRoot "/Applications/XAMPP/xamppfiles/htdocs/posts-manager/web"
 
