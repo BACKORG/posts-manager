@@ -43,7 +43,7 @@ server {
 	server_name pm.zhexiao.space;
 
 	access_log /var/log/nginx/pm.access.log;
-      error_log /var/log/nginx/pm.error.log;
+     error_log /var/log/nginx/pm.error.log;
 
 	location / {
 		# First attempt to serve request as file, then
