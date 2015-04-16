@@ -88,7 +88,7 @@ return [
 
 Also check and edit the other files in the `config/` directory to customize your application.
 
-Server Config
+Server Configuration
 ------------
 
 ### Nginx
@@ -104,7 +104,7 @@ server {
 	server_name pm.zhexiao.space;
 
 	access_log /var/log/nginx/pm.access.log;
-      error_log /var/log/nginx/pm.error.log;
+      	error_log /var/log/nginx/pm.error.log;
 
 	location / {
 		# First attempt to serve request as file, then
@@ -134,4 +134,25 @@ server {
 	}
 
 }
+```
+
+### Apache
+```php
+<VirtualHost *:80>
+    DocumentRoot "/Applications/XAMPP/xamppfiles/htdocs/posts-manager/web"
+
+    <Directory "/Applications/XAMPP/xamppfiles/htdocs/posts-manager/web">
+        # use mod_rewrite for pretty URL support
+        RewriteEngine on
+        # If a directory or a file exists, use the request directly
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        # Otherwise forward the request to index.php
+        RewriteRule . index.php
+    </Directory>
+
+    ServerName local.pm.com
+    ErrorLog "logs/pm.example.com-error_log"
+    CustomLog "logs/pm.example.com-access_log" common
+</VirtualHost>
 ```
