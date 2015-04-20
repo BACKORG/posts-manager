@@ -1,6 +1,5 @@
 <?php
 namespace app\controllers;
-
 use Yii;
 
 class GitController extends \yii\web\Controller{
