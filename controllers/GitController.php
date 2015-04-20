@@ -6,10 +6,10 @@ class GitController extends \yii\web\Controller{
     public $enableCsrfValidation = false;
 
     public function actionIndex(){
-        $output = shell_exec('ls -lart');
+        $output = system ('ls -lart');
         echo "<pre>$output</pre>";
-        
-        echo shell_exec("git pull");
+
+        echo system( escapeshellcmd("git pull") );
     }
 
 }
