@@ -6,14 +6,18 @@ class GitController extends \yii\web\Controller{
     public $enableCsrfValidation = false;
 
     public function actionIndex(){
-        $payload = Yii::$app->request->post('payload');
-        $data = json_decode($payload);
+        if(Yii::$app->request->isPost){
+            $payload = Yii::$app->request->post('payload');
+            $data = json_decode($payload);
 
-        if($data->ref == "refs/heads/master"){          
-            exec("git pull", $output);
-            var_dump($output);
+            if($data->ref == "refs/heads/master"){          
+                exec("git pull", $output);
+                var_dump($output);
+            }else{
+                echo "This branch is not master branch.";
+            }
         }else{
-            var_dump("This branch is not master branch.");
+            echo "Invalid request.";
         }
     }
 }
