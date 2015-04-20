@@ -8,12 +8,13 @@ class GitController extends \yii\web\Controller{
     public function actionIndex(){
         $payload = Yii::$app->request->post('payload');
         $data = json_decode($payload);
-        echo '<pre>';
-        print_r($data);
-        exit();
 
-        exec("git pull", $output);
-        var_dump($output);
+        if($data->ref == "refs/heads/master"){          
+            exec("git pull", $output);
+            var_dump($output);
+        }else{
+            var_dump("This branch is not master branch.");
+        }
     }
 }
 
