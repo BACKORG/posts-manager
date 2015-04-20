@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = 'My Yii Application 5';
+$this->title = 'My Yii Application 6';
 ?>
 <div class="site-index">
 
