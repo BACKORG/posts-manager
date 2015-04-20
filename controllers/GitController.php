@@ -6,9 +6,10 @@ class GitController extends \yii\web\Controller{
     public $enableCsrfValidation = false;
 
     public function actionIndex(){
-        var_dump($_POST);
-        $ref = Yii::$app->request->post('ref');
-        var_dump($ref);
+        $payload = Yii::$app->request->post('payload');
+        $data = json_decode($payload);
+        echo '<pre>';
+        print_r($data);
         exit();
 
         exec("git pull", $output);
