@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = 'My Yii Application LOL';
+$this->title = 'Post Manager';
 ?>
 <div class="site-index">
 
