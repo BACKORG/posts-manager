@@ -56,6 +56,14 @@ $config = [
             ],
         ],
     ],
+    'modules' => [
+       'socials' => [
+            'class' => 'app\modules\socials\Module',
+        ],
+    ],
+    'aliases' => [
+        '@zhexiao' => '@vendor/zhexiao',
+    ],
     'params' => $params,
 ];
 
