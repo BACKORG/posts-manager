@@ -9,7 +9,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => '1234567890!@#$%^&*()posjw',
+            'cookieValidationKey' => '@#$%^!*()&ujUYW!@*&',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -38,6 +38,7 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
+        // url manager
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -45,7 +46,15 @@ $config = [
             'rules' => [
                 // ...
             ],
-        ]
+        ],
+        // assets bundle, remove inside bundle js
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => false,
+                'yii\bootstrap\BootstrapAsset' => false,
+                'yii\bootstrap\BootstrapPluginAsset' => false
+            ],
+        ],
     ],
     'params' => $params,
 ];
