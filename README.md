@@ -95,3 +95,14 @@ server {
     CustomLog "logs/pm.example.com-access_log" common
 </VirtualHost>
 ```
+
+Technical
+---------
+
+- [Yii](http://www.yiiframework.com/) The Fast, Secure and Professional PHP Framework.
+
+- [Angularjs](https://angularjs.org/) HTML enhanced for web apps.
+
+- [Bootstrap](http://getbootstrap.com/) Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web.
+
+- [Sass](http://sass-lang.com/) Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
