@@ -57,8 +57,8 @@ $config = [
         ],
     ],
     'modules' => [
-       'socials' => [
-            'class' => 'app\modules\socials\Module',
+       'social' => [
+            'class' => 'app\modules\social\Module',
         ],
     ],
     'aliases' => [
