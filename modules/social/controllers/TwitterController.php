@@ -26,7 +26,7 @@ class TwitterController extends CommonController{
      * link twitter account
      * @return [type] [description]
      */
-    public function actionLink(){
+    public function actionConnect(){
         $reply = $this->_codebird->oauth_requestToken(array(
             'oauth_callback' => \Yii::$app->params['TWITTER_CALLBACK_URL']
         ));
