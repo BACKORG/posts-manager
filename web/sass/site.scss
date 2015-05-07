@@ -1,5 +1,71 @@
+@mixin css3($property, $value) {
+    -khtml-#{$property}: $value;
+    -webkit-#{$property}: $value;
+    -moz-#{$property}: $value;
+    -ms-#{$property}: $value;
+    -o-#{$property}: $value;
+    #{$property}: $value;
+}
+
+
+.container-fluid{
+    padding: 0;
+    margin: 0;
+}
+
 #w0.navbar{
-    border-radius: 0;
+    @include css3(border-radius, 0);
+    margin-bottom: 0;
+
+    #w1{
+        padding: 25px 0;
+
+        li a{
+            padding: 10px 30px;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+
+        li.active a, li a:hover{
+            background-color: #26aae1;
+        }
+    }
+
+    .navbar-brand{
+        margin-top: 15px;
+    }
+}
+
+#tpl-intro{
+    background-image: url("/image/intro-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 0 50%;
+    padding: 90px 0 70px 0;
+
+    .heading-line{
+        width: 54px;
+        height: 4px;
+        background: #26aae1;
+        display: block;
+        margin: 20px 0;
+    }
+
+    p{
+        font-size: 18px;
+        color: #4a4f53;
+        margin-bottom: 30px;
+    }
+
+    .intro-btn{
+        border-radius: 26px;
+        padding: 6px 28px;
+        background: #26aae1;
+        font-size: 22px;
+        color: #fff;
+        outline: 0;
+    }
 }
 
 .contact-wrap{
