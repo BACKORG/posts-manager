@@ -26,7 +26,8 @@ class AppAsset extends AssetBundle
         'js/libs/angular-route.min.js',
         'js/libs/bootstrap.min.js',
         'js/libs/scrollReveal.min.js',
-        'js/site.js'
+        'js/app.js',
+        'js/controllers.js',
     ];
 
     public $depends = [
