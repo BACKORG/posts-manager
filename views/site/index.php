@@ -22,10 +22,45 @@ $this->title = 'Post Manager';
     </div>
 </section>
 
-<div id='site' ng-controller='SocialNetworkCtrl'>
+<section id="tpl-services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 t-s-info-wrap" data-sr="wait 1s, enter left, ease-in-out 100px, over 0.5s">
+                <div class="t-s-info">
+                    <i class="fa fa-cogs"></i>
+                    <h4>Easy delete</h4>
+                    <p>We can give you a super easy way to delete your social network posts.</p>
+                </div>             
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 t-s-info-wrap" data-sr="wait 1.5s, enter left, ease-in-out 100px, over 0.5s">
+                <div class="t-s-info">
+                    <i class="fa fa-html5"></i>
+                    <h4>Html5 support</h4>
+                    <p>Our product support all html5 and css3 browser.</p>
+                </div>  
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 t-s-info-wrap" data-sr="wait 2s, enter left, ease-in-out 100px, over 0.5s">
+                <div class="t-s-info">
+                    <i class="fa fa-users"></i>
+                    <h4>Online help</h4>
+                    <p>You can ask help online, we will reply you as soon as possible.</p>
+                </div>  
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 t-s-info-wrap" data-sr="wait 2.5s, enter left, ease-in-out 100px, over 0.5s">
+                <div class="t-s-info">
+                    <i class="fa fa-desktop"></i>
+                    <h4>Fully responsive</h4>
+                    <p>Our product support  Desktop, Pad and Mobile device.</p>
+                </div>  
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id='site' ng-controller='SocialNetworkCtrl'>
     <ul class="site-s-n">
         <li ng-repeat="social in socialType">
             <a ng-click="connect($event)" data-id="{{social.id}}" ng-cloak>{{social.name}}</a>
         </li>
     </ul>
-</div>
+</section>
