@@ -28,7 +28,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
     <?php
         NavBar::begin([
-            'brandLabel' => 'PManager',
+            'brandLabel' => '',
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
                 'class' => 'navbar-inverse navbar',

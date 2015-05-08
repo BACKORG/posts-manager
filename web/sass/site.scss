@@ -27,7 +27,7 @@ body {
             padding: 10px 30px;
             margin-left: 10px;
             color: #999;
-            font-size: 16px;
+            font-size: 15px;
             @include css3(border-radius, 5px);
             @include css3(transition, all 0.6s);
         }
