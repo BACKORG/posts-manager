@@ -1,6 +1,6 @@
 // social network module
 var socialNetowkModule = angular.module('socialNetowkModule', []);
-socialNetowkModule.controller('SocialNetworkListCtrl', function($scope){
+socialNetowkModule.controller('SocialNetworkCtrl', function($scope){
     $scope.socialType = [
         {name : 'Twitter', id : 10},
         {name : 'Facebook', id : 20}

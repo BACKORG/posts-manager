@@ -22,7 +22,7 @@ $this->title = 'Post Manager';
     </div>
 </section>
 
-<div id='site' ng-controller='SocialNetworkListCtrl'>
+<div id='site' ng-controller='SocialNetworkCtrl'>
     <ul class="site-s-n">
         <li ng-repeat="social in socialType">
             <a ng-click="connect($event)" data-id="{{social.id}}" ng-cloak>{{social.name}}</a>
