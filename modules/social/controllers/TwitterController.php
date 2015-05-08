@@ -56,7 +56,10 @@ class TwitterController extends CommonController{
             'oauth_verifier' => $oauth_verifier
         ));
 
+        $collection = \Yii::$app->db->getCollection('social');
+        $collection->insert(['name' => 'John Smith', 'status' => 1]);
+
         echo '<pre>';
-        print_r($res);
+        print_r($collection);
     }
 }
