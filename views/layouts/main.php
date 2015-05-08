@@ -59,8 +59,24 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 
-    <footer class="footer">
-        
+    <footer>
+        <div class="container">
+            <p class="pull-left copy">&copy; Post Manager <?= date('Y') ?></p>
+
+            <div class="share-div pull-right clearfix">
+                <a target="_blank" href="http://www.facebook.com/sharer.php?u=<?=$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];?>" class="fa fa-facebook">
+                </a>
+
+                <a target="_blank" href="http://twitter.com/home?status=<?=$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];?>" class="fa fa-twitter">
+                </a>
+
+                <a target="_blank" href="http://plus.google.com/share?url=<?=$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];?>" class="fa fa-google-plus" >
+                </a>
+
+                <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&url=<?=$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];?>" class="fa fa-linkedin" >
+                </a>
+            </div>
+        </div>
     </footer>
 
 <?php $this->endBody() ?>

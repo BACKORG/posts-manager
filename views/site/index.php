@@ -36,7 +36,7 @@ $this->title = 'Post Manager';
                 <div class="t-s-info">
                     <i class="fa fa-html5"></i>
                     <h4>Html5 support</h4>
-                    <p>Our product support all html5 and css3 browser.</p>
+                    <p>Our product support all new version html5 and css3 browser.</p>
                 </div>  
             </div>
             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 t-s-info-wrap" data-sr="wait 2s, enter left, ease-in-out 100px, over 0.5s">
@@ -55,6 +55,103 @@ $this->title = 'Post Manager';
             </div>
         </div>
     </div>
+</section>
+
+<section id="tpl-social-connect">
+   <div class="container">
+        <div class="row text-center">
+            <h1>Choose your social network</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">            
+                    <a href="/social/twitter/connect">  
+                        <i class="fa fa-twitter-square"  data-toggle="tooltip" data-placement="top" title="Connect Twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">            
+                    <a>
+                        <i class="fa fa-facebook-square" data-toggle="tooltip" data-placement="top" title="Working on Facebook"></i>
+                    </a>      
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">              
+                    <a>  
+                        <i class="fa fa-youtube"  data-toggle="tooltip" data-placement="top" title="Working on Youtube"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">              
+                    <a>  
+                        <i class="fa fa-instagram"  data-toggle="tooltip" data-placement="top" title="Working on Instagram"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">              
+                    <a>
+                        <i class="fa fa-reddit-square"  data-toggle="tooltip" data-placement="top" title="Working on Reddit"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">      
+                    <a>        
+                        <i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Working on Linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">                  
+                    <a>
+                        <i class="fa fa-tumblr-square" data-toggle="tooltip" data-placement="top" title="Working on Tumblr"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">              
+                    <a>
+                        <i class="fa fa-flickr" data-toggle="tooltip" data-placement="top" title="Working on Flickr"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">              
+                    <a>
+                        <i class="fa fa-weibo" data-toggle="tooltip" data-placement="top" title="Working on Weibo"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">              
+                    <a>
+                        <i class="fa fa-wechat" data-toggle="tooltip" data-placement="top" title="Working on Wechat"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">              
+                    <a>
+                       <i class="fa fa-qq" data-toggle="tooltip" data-placement="top" title="Working on QQ"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">              
+                    <a>
+                       <i class="fa fa-renren" data-toggle="tooltip" data-placement="top" title="Working on Renren"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+   </div>
 </section>
 
 <section id='site' ng-controller='SocialNetworkCtrl'>
