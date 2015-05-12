@@ -1,4 +1,6 @@
 <?php
+// Return a BSON_LONG as an instance of MongoInt64
+ini_set('mongo.long_as_object', 1);
 
 // comment out the following two lines when deployed to production
 defined('YII_DEBUG') or define('YII_DEBUG', true);

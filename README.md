@@ -110,3 +110,5 @@ Technical
 - [Sass](http://sass-lang.com/) Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
 
 - [Codebird](https://github.com/jublonet/codebird-php) A Twitter library in PHP.
+
+- [Facebook SDK](https://developers.facebook.com/docs/php/gettingstarted/4.0.0) Facebook Official SDK - "facebook/php-sdk-v4" : "4.0.*"

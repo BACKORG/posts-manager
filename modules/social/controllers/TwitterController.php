@@ -80,6 +80,8 @@ class TwitterController extends CommonController{
                 'ip' => \Yii::$app->request->userIP, 
                 'socialData' => $insertData
             ]);
+
+            $this->redirect('/');
         }   
     }
 
