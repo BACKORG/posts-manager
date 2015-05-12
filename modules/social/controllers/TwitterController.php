@@ -20,6 +20,7 @@ class TwitterController extends CommonController{
         \zhexiao\twitter\Codebird::setConsumerKey(\Yii::$app->params['TWITTER_CONSUMER_KEY'], \Yii::$app->params['TWITTER_CONSUMER_SECRET']);
 
         $this->_codebird = \zhexiao\twitter\Codebird::getInstance();
+        // convert the return data to array
         $this->_codebird->setReturnFormat(CODEBIRD_RETURNFORMAT_ARRAY);
     }
 
@@ -28,9 +29,9 @@ class TwitterController extends CommonController{
      * @return [type] [description]
      */
     public function actionConnect(){
-        $reply = $this->_codebird->oauth_requestToken(array(
+        $reply = $this->_codebird->oauth_requestToken([
             'oauth_callback' => \Yii::$app->params['TWITTER_CALLBACK_URL']
-        ));
+        ]);
 
         // store the token
         $this->_codebird->setToken($reply['oauth_token'], $reply['oauth_token_secret']);
@@ -53,24 +54,45 @@ class TwitterController extends CommonController{
         $oauth_secret = $this->session->get('oauth_token_secret');
         $this->_codebird->setToken($oauth_token, $oauth_secret);
 
-        $res = $this->_codebird->oauth_accessToken(array(
+        $res = $this->_codebird->oauth_accessToken([
             'oauth_verifier' => $oauth_verifier
-        ));
+        ]);
 
+        // using user token to get twitter user data
         $this->_codebird->setToken($res['oauth_token'], $res['oauth_token_secret']);
-        $twitterUser = $this->_codebird->users_lookup(array(
-            'user_id' => $res['user_id']
-        ));
-
+        $twitterUser = $this->getTwitterUser($res['user_id']);
 
         if(isset($twitterUser['httpstatus']) && $twitterUser['httpstatus']==200){
-            $insetData['twitter_'.$res['user_id']] = $twitterUser[0];
-            $insetData['twitter_'.$res['user_id']]['oauth_token'] = $res['oauth_token'];
-            $insetData['twitter_'.$res['user_id']]['oauth_token_secret'] = $res['oauth_token_secret'];
+            $insertData = [];
+
+            // check this ip already exist or not
+            $data = $this->checkIpData();
+            if($data){
+                $insertData = $data['socialData'];
+            }
+
+            $insertData['twitter_'.$res['user_id']] = $twitterUser[0];
+            $insertData['twitter_'.$res['user_id']]['oauth_token'] = $res['oauth_token'];
+            $insertData['twitter_'.$res['user_id']]['oauth_token_secret'] = $res['oauth_token_secret'];
 
             // insert into mongodb
-            $collection = \Yii::$app->db->getCollection('social');
-            $collection->insert(['ip' => \Yii::$app->request->userIP, 'socialData' => $insetData]);
+            $this->insertDb([
+                'ip' => \Yii::$app->request->userIP, 
+                'socialData' => $insertData
+            ]);
         }   
+    }
+
+    /**
+     * api get twitter user
+     * @param  [type] $user_id [description]
+     * @return [type]          [description]
+     */
+    private function getTwitterUser($user_id){
+        $twitterUser = $this->_codebird->users_lookup([
+            'user_id' => $user_id
+        ]);
+
+        return $twitterUser;
     }
 }

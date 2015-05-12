@@ -3,6 +3,7 @@
 namespace app\modules\social\controllers;
 
 use yii\web\Controller;
+use yii\mongodb\Query;
 
 class CommonController extends Controller{
     // define session variable
@@ -11,8 +12,37 @@ class CommonController extends Controller{
     // define request variable
     public $request;
 
+    // define mongodb collection
+    public $mongoColl;
+
     public function init(){
         $this->session = \Yii::$app->session;
         $this->request = \Yii::$app->request;
+        $this->mongoColl = \Yii::$app->mongodb->getCollection('social');
+    }
+
+    /**
+     * check user ip exist or not
+     * @return [type] [description]
+     */
+    public function checkIpData(){
+        $ip = \Yii::$app->request->userIp;
+        $query = new Query;
+        $data = $query->from('social')->where(['ip' => $ip])->one();
+
+        // remove document
+        $this->mongoColl->remove([
+            '_id' => $data['_id']
+        ]);
+
+        return $data;
+    }
+
+    /**
+     * insert new data to mongodb
+     * @return [type] [description]
+     */
+    public function insertDb($parameter){
+        $this->mongoColl->insert($parameter); 
     }
 }
