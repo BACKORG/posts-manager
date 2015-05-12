@@ -1,5 +1,5 @@
 <?php
 return [
     'class' => '\yii\mongodb\Connection',
-    'dsn' => 'mongodb://localhost:27017/pm',
+    'dsn' => 'mongodb://104.236.88.204:27017/pm',
 ];

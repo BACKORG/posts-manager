@@ -20,6 +20,7 @@ class TwitterController extends CommonController{
         \zhexiao\twitter\Codebird::setConsumerKey(\Yii::$app->params['TWITTER_CONSUMER_KEY'], \Yii::$app->params['TWITTER_CONSUMER_SECRET']);
 
         $this->_codebird = \zhexiao\twitter\Codebird::getInstance();
+        $this->_codebird->setReturnFormat(CODEBIRD_RETURNFORMAT_ARRAY);
     }
 
     /**
@@ -32,9 +33,9 @@ class TwitterController extends CommonController{
         ));
 
         // store the token
-        $this->_codebird->setToken($reply->oauth_token, $reply->oauth_token_secret);
+        $this->_codebird->setToken($reply['oauth_token'], $reply['oauth_token_secret']);
 
-        $this->session->set('oauth_token_secret', $reply->oauth_token_secret);
+        $this->session->set('oauth_token_secret', $reply['oauth_token_secret']);
 
         $auth_url = $this->_codebird->oauth_authorize();
 
@@ -56,10 +57,20 @@ class TwitterController extends CommonController{
             'oauth_verifier' => $oauth_verifier
         ));
 
-        $collection = \Yii::$app->db->getCollection('social');
-        $collection->insert(['name' => 'John Smith', 'status' => 1]);
+        $this->_codebird->setToken($res['oauth_token'], $res['oauth_token_secret']);
+        $twitterUser = $this->_codebird->users_lookup(array(
+            'user_id' => $res['user_id']
+        ));
 
-        echo '<pre>';
-        print_r($collection);
+
+        if(isset($twitterUser['httpstatus']) && $twitterUser['httpstatus']==200){
+            $insetData['twitter_'.$res['user_id']] = $twitterUser[0];
+            $insetData['twitter_'.$res['user_id']]['oauth_token'] = $res['oauth_token'];
+            $insetData['twitter_'.$res['user_id']]['oauth_token_secret'] = $res['oauth_token_secret'];
+
+            // insert into mongodb
+            $collection = \Yii::$app->db->getCollection('social');
+            $collection->insert(['ip' => \Yii::$app->request->userIP, 'socialData' => $insetData]);
+        }   
     }
 }
