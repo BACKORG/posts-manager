@@ -66,12 +66,15 @@ class TwitterController extends CommonController{
             $insertData = [];
 
             // check this ip already exist or not
-            $data = $this->checkIpData();
+            $data = $this->getData();
             if($data){
+                // remove and re-insert data
+                $this->removeData($data['_id']);
                 $insertData = $data['socialData'];
             }
 
             $insertData['twitter_'.$res['user_id']] = $twitterUser[0];
+            $insertData['twitter_'.$res['user_id']]['type'] = 'twitter';
             $insertData['twitter_'.$res['user_id']]['oauth_token'] = $res['oauth_token'];
             $insertData['twitter_'.$res['user_id']]['oauth_token_secret'] = $res['oauth_token_secret'];
 

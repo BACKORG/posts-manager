@@ -58,12 +58,15 @@ class FacebookController extends CommonController{
                 $insertData = [];
 
                 // check this ip already exist or not
-                $data = $this->checkIpData();
+                $data = $this->getData();
                 if($data){
+                    // remove and re-insert data
+                    $this->removeData($data['_id']);
                     $insertData = $data['socialData'];
                 }
 
                 $insertData['facebook_'.$me['id']] = $me;
+                $insertData['facebook_'.$me['id']]['type'] = 'facebook';
                 $insertData['facebook_'.$me['id']]['access_token'] = $accessToken;
 
                 // insert into mongodb

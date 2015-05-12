@@ -25,17 +25,24 @@ class CommonController extends Controller{
      * check user ip exist or not
      * @return [type] [description]
      */
-    public function checkIpData(){
+    public function getData(){
         $ip = \Yii::$app->request->userIp;
         $query = new Query;
         $data = $query->from('social')->where(['ip' => $ip])->one();
 
+        return $data;
+    }
+
+    /**
+     * remove data by mongo id
+     * @param  [type] $_id [description]
+     * @return [type]      [description]
+     */
+    public function removeData($_id){
         // remove document
         $this->mongoColl->remove([
-            '_id' => $data['_id']
+            '_id' => $_id
         ]);
-
-        return $data;
     }
 
     /**

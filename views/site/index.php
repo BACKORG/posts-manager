@@ -57,10 +57,24 @@ $this->title = 'Post Manager';
     </div>
 </section>
 
+<section id='site' ng-controller='SocialNetworkCtrl'>
+        <div ng-repeat="social in socialArr" ng-cloak>
+            <img ng-src="{{social.image}}">
+            {{social.name}}
+        </div>
+
+
+ <!--    <ul class="site-s-n">
+        <li ng-repeat="social in socialType">
+            <a ng-click="connect($event)" data-id="{{social.id}}" >{{social.name}}</a>
+        </li>
+    </ul> -->
+</section>
+
 <section id="tpl-social-connect">
    <div class="container">
         <div class="row text-center">
-            <h1>Choose your social network</h1>
+            <h1>Manage your social network account!</h1>
         </div>
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
@@ -154,10 +168,3 @@ $this->title = 'Post Manager';
    </div>
 </section>
 
-<section id='site' ng-controller='SocialNetworkCtrl'>
-    <ul class="site-s-n">
-        <li ng-repeat="social in socialType">
-            <a ng-click="connect($event)" data-id="{{social.id}}" ng-cloak>{{social.name}}</a>
-        </li>
-    </ul>
-</section>
