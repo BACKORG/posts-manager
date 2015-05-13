@@ -89,6 +89,33 @@ class TwitterController extends CommonController{
     }
 
     /**
+     * get posts
+     * @return [type] [description]
+     */
+    public function actionPosts($key){
+        $data = $this->getData();
+
+        if($data){
+            $socialInfo = $data['socialData'][$key];
+
+            // using user token to get twitter user data
+            $this->_codebird->setToken($socialInfo['oauth_token'], $socialInfo['oauth_token_secret']);
+            $posts = $this->_codebird->statuses_userTimeline([
+                'user_id' => $socialInfo['id']
+            ]);       
+
+            if($posts['httpstatus'] == 200){
+                unset($posts['httpstatus']);
+                unset($posts['rate']);
+
+                $this->outputJson(array(
+                    'data' => $posts
+                ));
+            }
+        }
+    }
+
+    /**
      * api get twitter user
      * @param  [type] $user_id [description]
      * @return [type]          [description]
