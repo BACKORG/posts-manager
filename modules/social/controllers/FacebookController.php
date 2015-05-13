@@ -8,6 +8,7 @@ use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
 
 class FacebookController extends CommonController{
+    private $_output = ['error' => false];
 
     /**
      * initialization controller
@@ -106,7 +107,16 @@ class FacebookController extends CommonController{
                     $session, 'GET', '/me/feed'
                 ))->execute()->getGraphObject()->asArray();
 
-                print_r($posts);
+
+                if(count($posts['data']) > 0){
+                    $this->_output['data'] = $posts['data'];
+                    $this->_output['next_page'] = isset($posts['paging']->next)? $posts['paging']->next:'';
+                }else{
+                    $this->_output['error'] = true;
+                }
+
+                // output json
+                $this->outputJson($this->_output);
             } catch (FacebookRequestException $ex) {
                 echo $ex->getMessage();
             } catch (\Exception $ex) {

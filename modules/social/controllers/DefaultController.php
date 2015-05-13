@@ -16,14 +16,8 @@ class DefaultController extends CommonController{
             $this->_output['error'] = true;
         }
 
-        $this->outputJson();
+        $this->outputJson($this->_output);
     }
 
-    /**
-     * output json data
-     * @return [type] [description]
-     */
-    private function outputJson(){
-        echo \yii\helpers\Json::encode($this->_output);
-    }
+ 
 }

@@ -22,6 +22,14 @@ class CommonController extends Controller{
     }
 
     /**
+     * output json data
+     * @return [type] [description]
+     */
+    public function outputJson($data){
+        echo \yii\helpers\Json::encode($data);
+    }
+
+    /**
      * check user ip exist or not
      * @return [type] [description]
      */

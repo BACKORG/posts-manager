@@ -55,8 +55,8 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
         }
         
         url = '/social/' + type + '/posts?key=' + key;
-        $http.get(url).success(function(data, status, headers, config) {
-            
+        $http.get(url).success(function(res) {
+            console.log(res.data);
         });
     }
 });
