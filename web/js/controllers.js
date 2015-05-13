@@ -33,7 +33,7 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
                 socialArr.push(insertData);
             }
 
-            $scope.socialHeader = "You had linked " + socialArr.length + " social account";
+            $scope.socialHeader = "You have " + socialArr.length + " Social Network Accounts!";
             $scope.socialArr = socialArr;
         }
     });
