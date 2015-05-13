@@ -31,7 +31,7 @@ class FacebookController extends CommonController{
     public function actionConnect(){
         $helper = new FacebookRedirectLoginHelper(\Yii::$app->params['FACEBOOK_REDIRECT_URL']);
         $loginUrl = $helper->getLoginUrl([
-            'scope' => 'read_stream,manage_notifications,manage_pages,read_insights,user_status,publish_actions'
+            'scope' => 'read_stream, manage_pages'
         ]);
 
         $this->redirect($loginUrl);
