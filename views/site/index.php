@@ -61,7 +61,7 @@ $this->title = 'Post Manager';
 
 <!-- display linked accounts -->
 <section id='tpl-account' class='container' ng-controller='SocialNetworkCtrl'>
-    <h2 class="text-center">{{socialHeader}}</h2>
+    <h2 class="text-center t-a-sh">{{socialHeader}}</h2>
 
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 t-s-at-wrap" ng-repeat="social in socialArr" ng-cloak>
         <div class="t-s-at" data-type="{{social.type}}" data-key="{{social.key}}" ng-click="loadAccount($event)">
