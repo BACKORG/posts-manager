@@ -1,8 +1,9 @@
 // social network module
 var socialNetowkModule = angular.module('socialNetowkModule', []);
 socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
-    $scope.socialHeader = "";
-    // get social account data
+    /**
+     * get social account data
+     */
     $http.get('/social').success(function(data) {
         if(!data.error){
             var socials = data.socialData,
@@ -37,7 +38,11 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
         }
     });
 
-
+    /**
+     * load posts
+     * @param  {[type]} event [description]
+     * @return {[type]}       [description]
+     */
     $scope.loadAccount = function(event){
         var $obj = $(event.target);
         // if the click event is div child, so the obj should change to div
@@ -50,13 +55,24 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
             type = $obj.attr('data-type'),
             url = '';
 
+        // if type is facebook fanpage, change to facebook
         if(type == 'facebook_fanpage'){
             type = 'facebook';
         }
         
+        $scope.socialTpl = '/template/' + type + '.html';
+        // get data
         url = '/social/' + type + '/posts?key=' + key;
         $http.get(url).success(function(res) {
-            console.log(res.data);
+            $scope.socialPosts = res.data;
         });
+    }
+
+    /**
+     * return posts display template
+     * @return {[type]} [description]
+     */
+    $scope.getTpl = function(){
+        return  this.socialTpl;
     }
 });

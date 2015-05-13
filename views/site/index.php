@@ -3,6 +3,7 @@
 $this->title = 'Post Manager';
 ?>
 
+<!-- banner -->
 <section id="tpl-intro">
     <div class="container">
         <div class="row">
@@ -22,7 +23,7 @@ $this->title = 'Post Manager';
     </div>
 </section>
 
-
+<!-- intro -->
 <section id="tpl-services">
     <div class="container">
         <div class="row">
@@ -58,7 +59,7 @@ $this->title = 'Post Manager';
     </div>
 </section>
 
-
+<!-- display linked accounts -->
 <section id='tpl-account' class='container' ng-controller='SocialNetworkCtrl'>
     <h2 class="text-center">{{socialHeader}}</h2>
 
@@ -71,8 +72,14 @@ $this->title = 'Post Manager';
             </span>
         </div>
     </div>
+
+    <div class="clearfix"></div>
+
+    <!-- load social posts data -->
+    <div ng-include src="getTpl()"></div>
 </section>
 
+<!-- connect your social network account -->
 <section id="tpl-social-connect">
    <div class="container">
         <div class="row text-center">
