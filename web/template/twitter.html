@@ -1,3 +1,6 @@
 <div ng-repeat="post in socialPosts">
-    {{post.text}}
+    <img ng-src="{{post.extended_entities.media[0].media_url}}" >
+    <a href="https://twitter.com/{{post.user.screen_name}}/status/{{post.id_str}}" target="_blank">
+        {{post.text}}
+    </a>
 </div>
