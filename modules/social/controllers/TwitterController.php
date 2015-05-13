@@ -104,7 +104,7 @@ class TwitterController extends CommonController{
                 'user_id' => $socialInfo['id']
             ]);       
 
-            if($posts['httpstatus'] == 200){
+            if(isset($posts['httpstatus']) && $posts['httpstatus'] == 200){
                 unset($posts['httpstatus']);
                 unset($posts['rate']);
 
