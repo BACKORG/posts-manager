@@ -29,7 +29,9 @@ class FacebookController extends CommonController{
      */
     public function actionConnect(){
         $helper = new FacebookRedirectLoginHelper(\Yii::$app->params['FACEBOOK_REDIRECT_URL']);
-        $loginUrl = $helper->getLoginUrl();
+        $loginUrl = $helper->getLoginUrl([
+            'scope' => 'read_stream,manage_notifications,manage_pages,read_insights,user_status,publish_actions'
+        ]);
 
         $this->redirect($loginUrl);
     }
@@ -69,6 +71,9 @@ class FacebookController extends CommonController{
                 $insertData['facebook_'.$me['id']]['type'] = 'facebook';
                 $insertData['facebook_'.$me['id']]['access_token'] = $accessToken;
 
+                // get this user's fanpage if exist
+                $insertData = $this->getFacebookPages($session, $me['id'], $insertData);
+
                 // insert into mongodb
                 $this->insertDb([
                     'ip' => \Yii::$app->request->userIP, 
@@ -83,5 +88,49 @@ class FacebookController extends CommonController{
               // When validation fails or other local issues
             }
         }
+    }
+
+    /**
+     * get posts
+     * @return [type] [description]
+     */
+    public function actionPosts($key){
+        $data = $this->getData();
+
+        if($data){
+            $socialInfo = $data['socialData'][$key];
+
+            try {
+                $session = new FacebookSession($socialInfo['access_token']);
+                $posts = (new FacebookRequest(
+                    $session, 'GET', '/me/feed'
+                ))->execute()->getGraphObject()->asArray();
+
+                print_r($posts);
+            } catch (FacebookRequestException $ex) {
+                echo $ex->getMessage();
+            } catch (\Exception $ex) {
+                echo $ex->getMessage();
+            }           
+        }
+    }
+
+    /**
+     * get facebook fanpage data
+     * @param  [type] $session    [description]
+     * @param  [type] $userid     [description]
+     * @param  [type] $insertData [description]
+     * @return [type]             [description]
+     */
+    private function getFacebookPages($session, $userid, $insertData){
+        $pages = (new FacebookRequest($session, 'GET', '/'.$userid.'/accounts'))->execute()->getGraphObject()->asArray();
+        if(isset($pages['data']) && count($pages['data'])>0){
+            foreach ($pages['data'] as $page) {
+                $insertData['facebook_fanpage_'.$page->id] = (array) $page;
+                $insertData['facebook_fanpage_'.$page->id]['type'] = 'facebook_fanpage';
+            }
+        }
+
+        return $insertData;
     }
 }

@@ -22,6 +22,7 @@ $this->title = 'Post Manager';
     </div>
 </section>
 
+
 <section id="tpl-services">
     <div class="container">
         <div class="row">
@@ -57,18 +58,19 @@ $this->title = 'Post Manager';
     </div>
 </section>
 
-<section id='site' ng-controller='SocialNetworkCtrl'>
-        <div ng-repeat="social in socialArr" ng-cloak>
+
+<section id='tpl-account' class='container' ng-controller='SocialNetworkCtrl'>
+    <h2 class="text-center">{{socialHeader}}</h2>
+
+    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 t-s-at-wrap" ng-repeat="social in socialArr" ng-cloak>
+        <div class="t-s-at" data-type="{{social.type}}" data-key="{{social.key}}" ng-click="loadAccount($event)">
             <img ng-src="{{social.image}}">
-            {{social.name}}
+            <span>{{social.name}}</span>
+            <span class="fa-banner">
+                <i class="fa {{social.fontIcon}}"></i>
+            </span>
         </div>
-
-
- <!--    <ul class="site-s-n">
-        <li ng-repeat="social in socialType">
-            <a ng-click="connect($event)" data-id="{{social.id}}" >{{social.name}}</a>
-        </li>
-    </ul> -->
+    </div>
 </section>
 
 <section id="tpl-social-connect">

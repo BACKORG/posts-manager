@@ -102,12 +102,54 @@ body {
     }
 }
 
-#site{
-    .site-s-n{
-        li{
-            a{
-                cursor: pointer;
+#tpl-account{
+    padding: 40px 0;
+    
+    .t-s-at-wrap{
+        padding: 10px;
+
+        .t-s-at{
+            padding: 10px;
+            background-color: #00a8ec;
+            border: 3px solid #00a8ec;
+            cursor: pointer;
+            color: #fff;
+            position: relative;
+
+            span{
+                font-size: 16px;
             }
+        
+            img{
+                @include css3(border-radius, 50%);
+                margin-right: 10px;
+                height: 48px;
+                width: 48px;
+            }
+
+            .fa-banner{
+                position: absolute;
+                top: -2px;
+                right: -2px;
+                border-width: 20px;
+                border-style: solid;
+                border-radius: 0 4px 0 0;
+                border-color: #5CC7F5 #5CC7F5 transparent transparent;
+
+                .fa{
+                    position: absolute;
+                    top: -14px;
+                    right: -15px;
+                    color: #fff 
+                }
+            }
+
+           
+        }
+
+        .t-s-at:hover{
+            opacity: 0.8;
+            filter: alpha(opacity=8);
         }
     }
 }
@@ -180,7 +222,8 @@ body {
         }
 
         .fa:hover{
-            background-color: #9ac9ec;
+            opacity: 0.8;
+            filter: alpha(opacity=8);
         }
     }
 }
