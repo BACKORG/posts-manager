@@ -84,7 +84,7 @@ $this->title = 'Post Manager';
 <section id="tpl-social-connect">
    <div class="container">
         <div class="row text-center">
-            <h1>Manage your social network account!</h1>
+            <h1>Connect your social network account</h1>
         </div>
         <div class="row">
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">

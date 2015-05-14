@@ -160,13 +160,10 @@ body {
         .fa-check{
             display: none;
             position: absolute;
-            bottom: 10px;
-            right: -10px;
+            bottom: 20px;
+            right: 40px;
             font-size: 50px;
-            color: #E26A6A;
-            @include css3(text-shadow, 0px 2px 0px #E26A6A);
-            opacity: 0.7;
-            filter: alpha(opacity=7);
+            color: #2ECC71;
         }
     }
 
@@ -298,12 +295,23 @@ footer{
 
         .s-n-p{
             padding: 10px;
-            background-color: rgb(60, 91, 155);
-            color: #ddd;
+            background-color: #F2F1EF;
+            color: #333;
             position: relative;
 
+            h4{
+                font-size: 16px;
+                line-height: 1.7;
+                letter-spacing: 0.2px;
+                margin-top: 0;
+            }
+
+            time{
+                font-size: 13px;
+            }
+
             a{
-                color: #ddd;
+                color: #333;
             }
 
             img{
@@ -339,7 +347,7 @@ footer{
     }
 
     .del-btn{
-        margin-top: 50px;
+        margin-top: 10px;
         outline: 0;
     }
 }

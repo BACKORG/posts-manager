@@ -1,7 +1,7 @@
 // social network module
 var socialNetowkModule = angular.module('socialNetowkModule', []);
 socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
-    $scope.choosePostHeader = "Click the post which you want to delete!";
+    $scope.choosePostHeader = "Click content mark to delete";
 
     /**
      * get social account data
@@ -35,7 +35,7 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
                 socialArr.push(insertData);
             }
 
-            $scope.socialHeader = "You have " + socialArr.length + " Social Network Accounts!";
+            $scope.socialHeader = "You have " + socialArr.length + " social network accounts connected";
             $scope.socialArr = socialArr;
         }
     });
@@ -101,6 +101,11 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
         }
     }
 
+    /**
+     * delete posted status
+     * @param  {[type]} event [description]
+     * @return {[type]}       [description]
+     */
     $scope.deletePost = function(event){
         var $obj = $(event.target),
             type = this.socialType,
@@ -128,5 +133,19 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
         }).success(function(res){
             $obj.closest('.s-n-p-tpl').find('.s-n-p.delete').fadeOut();
         })
+    }
+
+    $scope.getFacebookText = function(post){
+        if(post.hasOwnProperty('message')){
+            return post.message;
+        }else if(post.hasOwnProperty('description')){
+            return post.description;
+        }else if(post.hasOwnProperty('story')){
+            return post.story;
+        }
+    }
+
+    $scope.getFacebookLink = function(post){
+        return 'https://www.facebook.com/' + (post.id).replace('_', '/posts/');
     }
 });
