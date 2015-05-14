@@ -110,13 +110,6 @@ $this->title = 'Post Manager';
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
                 <div class="t-s-c-wrap">              
                     <a>  
-                        <i class="fa fa-youtube"  data-toggle="tooltip" data-placement="top" title="Working on Youtube"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
-                <div class="t-s-c-wrap">              
-                    <a>  
                         <i class="fa fa-instagram"  data-toggle="tooltip" data-placement="top" title="Working on Instagram"></i>
                     </a>
                 </div>
@@ -132,6 +125,13 @@ $this->title = 'Post Manager';
                 <div class="t-s-c-wrap">      
                     <a>        
                         <i class="fa fa-linkedin" data-toggle="tooltip" data-placement="top" title="Working on Linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                <div class="t-s-c-wrap">              
+                    <a>  
+                        <i class="fa fa-youtube"  data-toggle="tooltip" data-placement="top" title="Working on Youtube"></i>
                     </a>
                 </div>
             </div>
