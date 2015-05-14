@@ -1,6 +1,6 @@
 // social network module
 var socialNetowkModule = angular.module('socialNetowkModule', []);
-socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
+socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $timeout){
     $scope.choosePostHeader = "Click content mark to delete";
 
     /**
@@ -132,9 +132,16 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(res){
             $obj.closest('.s-n-p-tpl').find('.s-n-p.delete').fadeOut();
+
+            $scope.setError(true, 'asdasd');
         })
     }
 
+    /**
+     * get facebook text
+     * @param  {[type]} post [description]
+     * @return {[type]}      [description]
+     */
     $scope.getFacebookText = function(post){
         if(post.hasOwnProperty('message')){
             return post.message;
@@ -145,7 +152,26 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
         }
     }
 
+    /**
+     * get facebook link
+     * @param  {[type]} post [description]
+     * @return {[type]}      [description]
+     */
     $scope.getFacebookLink = function(post){
-        return 'https://www.facebook.com/' + (post.id).replace('_', '/posts/');
+        var postId = post.id;
+        return 'https://www.facebook.com/' + postId.replace('_', '/posts/');
+    }
+
+    /**
+     * set error
+     */
+    $scope.setError = function(stat, msg){
+        $scope.errorStatus = stat;
+        $scope.errorMsg = msg;
+
+        // hide error 
+        $timeout(function(){
+            $scope.errorStatus = false;
+        }, 3000)
     }
 });

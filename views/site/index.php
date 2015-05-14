@@ -2,7 +2,6 @@
 /* @var $this yii\web\View */
 $this->title = 'Post Manager';
 ?>
-
 <!-- banner -->
 <section id="tpl-intro">
     <div class="container">
@@ -61,6 +60,13 @@ $this->title = 'Post Manager';
 
 <!-- display linked accounts -->
 <section id='tpl-account' class='container' ng-controller='SocialNetworkCtrl'>
+    <!-- error message -->
+    <div class="alert alert-danger alert-dismissible error-wrap" role="alert" ng-show="errorStatus">
+        <div class="text-center msg" ng-cloak>
+            {{errorMsg}}
+        </div>
+    </div>
+
     <h2 class="text-center t-a-sh">{{socialHeader}}</h2>
 
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 t-s-at-wrap" ng-repeat="social in socialArr" ng-cloak>
@@ -177,4 +183,3 @@ $this->title = 'Post Manager';
         </div>
    </div>
 </section>
-

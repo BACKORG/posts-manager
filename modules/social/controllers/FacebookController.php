@@ -10,6 +10,8 @@ use Facebook\FacebookRequest;
 class FacebookController extends CommonController{
     private $_output = ['error' => false];
 
+    private $_fb_session;
+
     /**
      * initialization controller
      * @return [type] [description]
@@ -31,7 +33,7 @@ class FacebookController extends CommonController{
     public function actionConnect(){
         $helper = new FacebookRedirectLoginHelper(\Yii::$app->params['FACEBOOK_REDIRECT_URL']);
         $loginUrl = $helper->getLoginUrl([
-            'scope' => 'read_stream, manage_pages'
+            'scope' => 'read_stream, manage_pages, publish_actions'
         ]);
 
         $this->redirect($loginUrl);
@@ -96,15 +98,10 @@ class FacebookController extends CommonController{
      * @return [type] [description]
      */
     public function actionPosts($key){
-        $data = $this->getData();
-
-        if($data){
-            $socialInfo = $data['socialData'][$key];
-
+        if( $this->setToken($key) ){
             try {
-                $session = new FacebookSession($socialInfo['access_token']);
                 $posts = (new FacebookRequest(
-                    $session, 'GET', '/me/feed'
+                    $this->_fb_session, 'GET', '/me/feed'
                 ))->execute()->getGraphObject()->asArray();
 
 
@@ -121,8 +118,55 @@ class FacebookController extends CommonController{
                 echo $ex->getMessage();
             } catch (\Exception $ex) {
                 echo $ex->getMessage();
-            }           
+            }  
         }
+    }
+
+    /**
+     * delete post
+     * @return [type] [description]
+     */
+    public function actionDel(){
+        if($this->request->isPost){
+            $key = $this->request->post('key');
+            $ids = $this->request->post('id');
+
+            if(count($ids) > 0 && $this->setToken($key)){
+                foreach ($ids as  $id) {
+                    try {
+                        $request = new FacebookRequest(
+                            $this->_fb_session,
+                            'DELETE',
+                            $id
+                        );
+                        $request->execute();
+                    } catch (FacebookRequestException $ex) {
+                        echo $ex->getMessage();
+                    } catch (\Exception $ex) {
+                        echo $ex->getMessage();
+                    } 
+                }
+            }
+        }
+    }
+
+    /**
+     * set facebook token from key
+     */
+    private function setToken($key){
+        $data = $this->getData();
+        if($data){
+            $socialInfo = $data['socialData'][$key];
+            try {
+                $this->_fb_session = new FacebookSession($socialInfo['access_token']);
+
+                return true;
+            } catch (\Exception $ex) {
+                return false;           
+            }  
+        }
+
+        return false;
     }
 
     /**

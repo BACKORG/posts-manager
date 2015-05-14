@@ -11,6 +11,10 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.alert{
+    @include css3(border-radius, 0);
+}
+
 .container-fluid{
     padding: 0;
     margin: 0;
@@ -154,7 +158,7 @@ body {
 
         .t-s-at:hover{
             opacity: 0.8;
-            filter: alpha(opacity=8);
+            filter: alpha(opacity=80);
         }
 
         .fa-check{
@@ -243,7 +247,7 @@ body {
 
         .fa:hover{
             opacity: 0.8;
-            filter: alpha(opacity=8);
+            filter: alpha(opacity=80);
         }
     }
 }
@@ -349,5 +353,24 @@ footer{
     .del-btn{
         margin-top: 10px;
         outline: 0;
+    }
+}
+
+
+.error-wrap.ng-hide{
+    opacity: 0;
+}
+
+.error-wrap{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    opacity: 1;
+    @include css3(transition, all linear 0.5s);
+
+    .msg{
+        font-size: 16px;
     }
 }
