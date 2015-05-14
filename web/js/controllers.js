@@ -170,13 +170,8 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $time
         $scope.errorMsg = msg;
 
         // hide error 
-        var promise = $timeout(function(){
+        $timeout(function(){
             $scope.errorStatus = false;
-            
-            // Stop the pending timeout
-            $timeout.cancel(promise);
         }, 3000);
-        
-     
     }
 });
