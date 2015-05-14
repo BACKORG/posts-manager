@@ -1,6 +1,8 @@
 // social network module
 var socialNetowkModule = angular.module('socialNetowkModule', []);
 socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
+    $scope.choosePostHeader = "Click the post which you want to delete!";
+
     /**
      * get social account data
      */
@@ -50,6 +52,9 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
             $obj = $obj.closest('div');
         }
 
+        $('.t-s-at-wrap').removeClass('active');
+        $obj.closest('.t-s-at-wrap').addClass('active');
+
         // get attributes
         var key = $obj.attr('data-key'),
             type = $obj.attr('data-type'),
@@ -65,6 +70,8 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
         url = '/social/' + type + '/posts?key=' + key;
         $http.get(url).success(function(res) {
             $scope.socialPosts = res.data;
+            $scope.socialType = type;
+            $scope.socialKey = key;
         });
     }
 
@@ -74,5 +81,52 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http){
      */
     $scope.getTpl = function(){
         return  this.socialTpl;
+    }
+
+    /**
+     * mark this post is need delete
+     * @return {[type]} [description]
+     */
+    $scope.markDelete = function(event){
+        var $obj = $(event.target);
+        // if the click event is div child, make the $obj to be parent DOM
+        if(!$obj.attr('data-id')){
+            $obj = $obj.closest('.s-n-p');
+        }
+
+        if($obj.hasClass('delete')){
+            $obj.removeClass('delete');
+        }else{
+            $obj.addClass('delete');
+        }
+    }
+
+    $scope.deletePost = function(event){
+        var $obj = $(event.target),
+            type = this.socialType,
+            key = this.socialKey,
+            url = '',
+            delId = [],
+            data = {};
+
+        // get the post id which need to be deleted
+        $obj.closest('.s-n-p-tpl').find('.s-n-p.delete').each(function(){
+            delId.push($(this).attr('data-id'));
+        })
+
+        // generate post url
+        url = '/social/' + type + '/del';
+        data.id = delId;
+        data.key = key;
+
+        // post data
+        $http({
+            method: 'POST',
+            url: url,
+            data: $.param(data),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(res){
+            $obj.closest('.s-n-p-tpl').find('.s-n-p.delete').fadeOut();
+        })
     }
 });

@@ -111,6 +111,7 @@ body {
     
     .t-s-at-wrap{
         padding: 10px;
+        position: relative;
 
         .t-s-at{
             padding: 10px;
@@ -138,7 +139,7 @@ body {
                 border-width: 20px;
                 border-style: solid;
                 border-radius: 0 4px 0 0;
-                border-color: #5CC7F5 #5CC7F5 transparent transparent;
+                border-color: #3A539B #3A539B transparent transparent;
 
                 .fa{
                     position: absolute;
@@ -154,6 +155,24 @@ body {
         .t-s-at:hover{
             opacity: 0.8;
             filter: alpha(opacity=8);
+        }
+
+        .fa-check{
+            display: none;
+            position: absolute;
+            bottom: 10px;
+            right: -10px;
+            font-size: 50px;
+            color: #E26A6A;
+            @include css3(text-shadow, 0px 2px 0px #E26A6A);
+            opacity: 0.7;
+            filter: alpha(opacity=7);
+        }
+    }
+
+    .t-s-at-wrap.active{
+        .fa-check{
+            display: inline-block;
         }
     }
 }
@@ -267,5 +286,60 @@ footer{
         .fa-linkedin {
             background: #1b5690;
         }
+    }
+}
+
+.s-n-p-tpl{
+    margin-top: 40px;
+
+    .s-n-p-wrap{
+        padding: 10px;
+        cursor: pointer;
+
+        .s-n-p{
+            padding: 10px;
+            background-color: rgb(60, 91, 155);
+            color: #ddd;
+            position: relative;
+
+            a{
+                color: #ddd;
+            }
+
+            img{
+                width: 100%;
+            }
+
+            .s-n-p-st{
+                span{
+                    margin-right: 20px;
+
+                    .fa{
+                        margin-right: 5px;
+                    }
+                }
+            }
+
+            .fa-times{
+                display: none;
+                position: absolute;
+                font-size: 80px;
+                opacity: 0.5;
+                top: 0;
+                right: 0;
+                color: #F64747;
+            }
+        }
+
+        .s-n-p.delete{
+            .fa-times{
+                display: inline-block;
+            }
+        }
+    }
+
+    .del-btn{
+        margin-top: 50px;
+        outline: 0;
     }
 }

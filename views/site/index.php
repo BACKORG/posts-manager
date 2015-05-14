@@ -71,12 +71,13 @@ $this->title = 'Post Manager';
                 <i class="fa {{social.fontIcon}}"></i>
             </span>
         </div>
+        <i class="fa fa-check"></i>
     </div>
 
     <div class="clearfix"></div>
 
     <!-- load social posts data -->
-    <div ng-include src="getTpl()"></div>
+    <div class="s-n-p-tpl clearfix" ng-include src="getTpl()"></div>
 </section>
 
 <!-- connect your social network account -->

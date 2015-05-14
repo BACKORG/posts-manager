@@ -93,16 +93,8 @@ class TwitterController extends CommonController{
      * @return [type] [description]
      */
     public function actionPosts($key){
-        $data = $this->getData();
-
-        if($data){
-            $socialInfo = $data['socialData'][$key];
-
-            // using user token to get twitter user data
-            $this->_codebird->setToken($socialInfo['oauth_token'], $socialInfo['oauth_token_secret']);
-            $posts = $this->_codebird->statuses_userTimeline([
-                'user_id' => $socialInfo['id']
-            ]);       
+        if( $this->setToken($key) ){
+            $posts = $this->_codebird->statuses_userTimeline();       
 
             if(isset($posts['httpstatus']) && $posts['httpstatus'] == 200){
                 unset($posts['httpstatus']);
@@ -111,9 +103,27 @@ class TwitterController extends CommonController{
                 $this->outputJson(array(
                     'data' => $posts
                 ));
+            }   
+        }
+    }
+
+    /**
+     * delete post
+     * @return [type] [description]
+     */
+    public function actionDel(){
+        if($this->request->isPost){
+            $key = $this->request->post('key');
+            $ids = $this->request->post('id');
+
+            if(count($ids) > 0 && $this->setToken($key)){
+                foreach ($ids as  $statusId) {
+                    $this->_codebird->statuses_destroy_ID('id='.$statusId);
+                }
             }
         }
     }
+
 
     /**
      * api get twitter user
@@ -126,5 +136,20 @@ class TwitterController extends CommonController{
         ]);
 
         return $twitterUser;
+    }
+
+    /**
+     * set this user's twitter token
+     */
+    private function setToken($key){
+        $data = $this->getData();
+        if($data){
+            $socialInfo = $data['socialData'][$key];
+            $this->_codebird->setToken($socialInfo['oauth_token'], $socialInfo['oauth_token_secret']);
+
+            return true;
+        }
+
+        return false;
     }
 }
