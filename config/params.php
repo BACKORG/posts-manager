@@ -10,6 +10,6 @@ return [
     'FACEBOOK_REDIRECT_URL' => 'http://local.pm.com/social/facebook/auth',
     'INSTAGRAM_CLIENT_ID' => '3bd4a779086f467da618c95fe4e54cb7',
     'INSTAGRAM_CLIENT_SECRET' => 'b3589f1b833445ba927058e3de9f8dd8',
-    'INSTAGRAM_REDIRECT_URL' => 'http://local.pm.com/social/instagram/auth',
+    'INSTAGRAM_REDIRECT_URL' => 'http://pm.zhexiao.com/social/instagram/auth',
     
 ];
