@@ -30,6 +30,12 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $time
                         insertData['image'] = 'https://graph.facebook.com/'+socials[i]['id']+'/picture';
                         insertData['fontIcon'] = "fa-facebook";
                     break;
+
+                    case 'instagram':
+                        insertData['name'] = socials[i]['username'];
+                        insertData['image'] = socials[i]['profile_picture'];
+                        insertData['fontIcon'] = "fa-instagram";
+                    break;
                 }
 
                 socialArr.push(insertData);
@@ -131,9 +137,11 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $time
             data: $.param(data),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).success(function(res){
-            $obj.closest('.s-n-p-tpl').find('.s-n-p.delete').fadeOut();
-
-            $scope.setError(true, 'asdasd');
+            if(res.error){
+                $scope.setError(true, res.msg);
+            }else{
+                $obj.closest('.s-n-p-tpl').find('.s-n-p.delete').fadeOut();
+            }
         })
     }
 
@@ -172,6 +180,6 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $time
         // hide error 
         $timeout(function(){
             $scope.errorStatus = false;
-        }, 3000);
+        }, 6000);
     }
 });

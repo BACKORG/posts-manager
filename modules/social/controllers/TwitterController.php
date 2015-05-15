@@ -9,6 +9,9 @@ class TwitterController extends CommonController{
     // define the codebird variable
     private $_codebird;
 
+    // define the output data
+    private $_output = ['error' => false];
+
     /**
      * initialization controller
      * @return [type] [description]
@@ -120,6 +123,8 @@ class TwitterController extends CommonController{
                 foreach ($ids as  $statusId) {
                     $this->_codebird->statuses_destroy_ID('id='.$statusId);
                 }
+
+                $this->outputJson($this->_output);
             }
         }
     }

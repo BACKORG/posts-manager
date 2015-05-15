@@ -131,13 +131,18 @@ class FacebookController extends CommonController{
             $key = $this->request->post('key');
             $ids = $this->request->post('id');
 
+            $this->_output['error'] = true;
+            $this->_output['msg'] = "(#200) The user hasn't authorized the application to perform this action";
+            $this->outputJson($this->_output);
+            exit();
+            
             if(count($ids) > 0 && $this->setToken($key)){
                 foreach ($ids as  $id) {
                     try {
                         $request = new FacebookRequest(
                             $this->_fb_session,
                             'DELETE',
-                            $id
+                            '/'.$id
                         );
                         $request->execute();
                     } catch (FacebookRequestException $ex) {
