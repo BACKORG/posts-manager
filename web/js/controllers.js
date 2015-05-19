@@ -2,6 +2,7 @@
 var socialNetowkModule = angular.module('socialNetowkModule', []);
 socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $timeout){
     $scope.choosePostHeader = "Click content mark to delete";
+    $scope.aDataLoading = false;
 
     /**
      * get social account data
@@ -72,12 +73,14 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $time
         }
         
         $scope.socialTpl = '/template/' + type + '.html';
+        $scope.aDataLoading = true;
         // get data
         url = '/social/' + type + '/posts?key=' + key;
         $http.get(url).success(function(res) {
             $scope.socialPosts = res.data;
             $scope.socialType = type;
             $scope.socialKey = key;
+            $scope.aDataLoading = false;
         });
     }
 

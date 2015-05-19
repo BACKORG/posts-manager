@@ -69,6 +69,7 @@ $this->title = 'Post Manager';
 
     <h2 class="text-center t-a-sh">{{socialHeader}}</h2>
 
+    <!-- your social account -->
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 t-s-at-wrap" ng-repeat="social in socialArr" ng-cloak>
         <div class="t-s-at" data-type="{{social.type}}" data-key="{{social.key}}" ng-click="loadAccount($event)">
             <img ng-src="{{social.image}}">
@@ -83,6 +84,7 @@ $this->title = 'Post Manager';
     <div class="clearfix"></div>
 
     <!-- load social posts data -->
+    <div class="text-center margin-top-10" ng-show="aDataLoading"><img ng-src="../image/gears.gif" /></div> 
     <div class="s-n-p-tpl clearfix" ng-include src="getTpl()"></div>
 </section>
 
