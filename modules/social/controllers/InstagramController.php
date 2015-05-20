@@ -2,7 +2,7 @@
 
 namespace app\modules\social\controllers;
 
-class InstagramController extends CommonController{
+class InstagramController extends CommonController implements SocialInterface{
     private $_output = ['error' => false];
 
     private $_instagram;
@@ -32,7 +32,8 @@ class InstagramController extends CommonController{
      * save access token
      * @return [type] [description]
      */
-    public function actionAuth($code){
+    public function actionAuth(){
+        $code = $this->request->get('code');
         $res = $this->_instagram->authToken($code);
         $resJson = json_decode($res, true);
 

@@ -5,7 +5,7 @@ namespace app\modules\social\controllers;
 use yii\web\Controller;
 use zhexiao;
 
-class TwitterController extends CommonController{
+class TwitterController extends CommonController implements SocialInterface{
     // define the codebird variable
     private $_codebird;
 

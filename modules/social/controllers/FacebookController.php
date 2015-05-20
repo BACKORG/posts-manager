@@ -7,7 +7,7 @@ use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
 
-class FacebookController extends CommonController{
+class FacebookController extends CommonController implements SocialInterface{
     private $_output = ['error' => false];
 
     private $_fb_session;

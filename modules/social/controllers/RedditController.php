@@ -2,7 +2,7 @@
 
 namespace app\modules\social\controllers;
 
-class RedditController extends CommonController{
+class RedditController extends CommonController implements SocialInterface{
     private $_output = ['error' => false];
 
     private $_reddit;
@@ -32,7 +32,8 @@ class RedditController extends CommonController{
      * save access token
      * @return [type] [description]
      */
-    public function actionAuth($code){
+    public function actionAuth(){
+        $code = $this->request->get('code');
         $tokenData = $this->_reddit->getToken($code);
 
         $user = $this->_reddit->get([
