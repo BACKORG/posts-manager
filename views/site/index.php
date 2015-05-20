@@ -118,8 +118,8 @@ $this->title = 'Post Manager';
             </div>
             <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
                 <div class="t-s-c-wrap">              
-                    <a>
-                        <i class="fa fa-reddit-square"  data-toggle="tooltip" data-placement="top" title="Working on Reddit"></i>
+                    <a href="/social/reddit/connect">
+                        <i class="fa fa-reddit-square"  data-toggle="tooltip" data-placement="top" title="Connect Reddit"></i>
                     </a>
                 </div>
             </div>

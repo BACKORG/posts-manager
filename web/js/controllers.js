@@ -37,6 +37,12 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $time
                         insertData['image'] = socials[i]['profile_picture'];
                         insertData['fontIcon'] = "fa-instagram";
                     break;
+
+                    case 'reddit':
+                        insertData['name'] = socials[i]['name'];
+                        insertData['image'] = '../image/reddit-icon.png';
+                        insertData['fontIcon'] = "fa-reddit";
+                    break;
                 }
 
                 socialArr.push(insertData);
