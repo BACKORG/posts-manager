@@ -5,7 +5,7 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $time
     $scope.aDataLoading = false;
 
     /**
-     * get social account data
+     * get social account 
      */
     $http.get('/social').success(function(data) {
         if(!data.error){
@@ -54,7 +54,7 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $time
     });
 
     /**
-     * load posts
+     * load social account api data
      * @param  {[type]} event [description]
      * @return {[type]}       [description]
      */
@@ -83,10 +83,16 @@ socialNetowkModule.controller('SocialNetworkCtrl', function($scope, $http, $time
         // get data
         url = '/social/' + type + '/posts?key=' + key;
         $http.get(url).success(function(res) {
-            $scope.socialPosts = res.data;
-            $scope.socialType = type;
-            $scope.socialKey = key;
             $scope.aDataLoading = false;
+            
+            if(res.error){
+                $scope.setError(true, res.message)
+            }else{
+                $scope.socialPosts = res.data;
+                $scope.socialType = type;
+                $scope.socialKey = key;
+            }
+           
         });
     }
 

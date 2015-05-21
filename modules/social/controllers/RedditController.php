@@ -83,6 +83,7 @@ class RedditController extends CommonController implements SocialInterface{
                 $this->_output['data'] = $posts['data']['children'];
             }else{
                 $this->_output['error'] = true;
+                $this->_output['message'] = "Your reddit access token had expired, please reconnect it.";
             }
             
             // output json
@@ -95,6 +96,18 @@ class RedditController extends CommonController implements SocialInterface{
      * @return [type] [description]
      */
     public function actionDel(){
-       
+       $key = $this->request->post('key');
+       $ids = $this->request->post('id');
+
+       $data = $this->getData();
+       if($data){
+            $socialInfo = $data['socialData'][$key];
+            foreach ($ids as $id) {
+                $this->_reddit->delete([
+                   'id' => 't3_'.$id,
+                   'token' => $socialInfo['access_token'],
+                ]);  
+            }
+       }
     }
 }

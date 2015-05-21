@@ -31,7 +31,7 @@ class zxReddit{
             'response_type' => 'code',
             'client_id' => $this->_client_id,
             'redirect_uri' => $this->_redirect_url,
-            'scope' => 'identity,save,submit,vote,history,read',
+            'scope' => 'identity,save,modposts,edit,submit,vote,history,read',
             'state' => uniqid(),
             'duration' => 'permanent'
         ];
@@ -64,12 +64,54 @@ class zxReddit{
        return $data;
     }
 
+    /**
+     * refresh token
+     * @return [type] [description]
+     */
+    public function refreshToken($refreshToken){
+        $url = "https://ssl.reddit.com/api/v1/access_token";
+        $postData = array(
+            'redirect_uri' => $this->_redirect_url,
+            'client_id' => $this->_client_id, 
+            'grant_type' => 'refresh_token',
+            'refresh_token' => $refreshToken
+        );
+        // reddit需要额外的auth 认证
+        $auth_value = 'Basic ' . base64_encode($this->_client_id .  ':' . $this->_client_secret);
+        $curl_extra = [
+            CURLOPT_HTTPHEADER => array("Authorization: ".$auth_value),
+        ];
+        $res = $this->curl_post($url, $postData, $curl_extra);
+        return json_decode($res);
+    }
+
+    /**
+     * get api data
+     * @param  array  $parameter [description]
+     * @return [type]            [description]
+     */
     public function get(array $parameter){
         $this->_access_token = $parameter['token'];
 
         $url = $this->api_host . $parameter['link'];
 
         $data = $this->exec($url);
+        return $data;
+    }
+
+    /**
+     * remove posts
+     * @return [type] [description]
+     */
+    public function delete(array $parameter){
+        $this->_access_token = $parameter['token'];
+        $parameter = [
+            'id' => $parameter['id'],
+        ];
+
+        $url = $this->api_host . '/api/del';
+
+        $data = $this->exec($url, $parameter);
         return $data;
     }
 
